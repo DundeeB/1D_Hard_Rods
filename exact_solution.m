@@ -1,9 +1,6 @@
-L = 40;
-N = 34;
-eta = 0.9;
-sig = 1;  % eta*L/n;
+function [] = exact_solution(L,N,sig)
 
-X = 0:sig/1e1:L;
+X = sig*0.4:sig*0.1:L-0.4*sig;
 RHO = zeros(size(X));
 for i=1:length(X)
     x = X(i);
@@ -16,10 +13,11 @@ end
 %%
 rho = diff(RHO)./diff(X);
 X_rho = 1/2*(X(1:end-1)+X(2:end));
-plot(X_rho/sig,rho,'-');
-set(gca,'FontSize',24);
-xlabel('x/\sigma');
-ylabel('\rho');
-grid on;
-title(['Exact solution, N=' num2str(N) ', L=' num2str(L) ', \sigma=' num2str(sig)]);
-ylim([-0.05 max(rho)*1.1]);
+plot(X_rho/sig,rho,'-', 'LineWidth', 1.5, 'DisplayName', 'Exacat Solution');
+% set(gca,'FontSize',24);
+% xlabel('x/\sigma');
+% ylabel('\rho');
+% grid on;
+% title(['Exact solution, N=' num2str(N) ', L/\sigma=' num2str(L)]);
+% ylim([-0.05 max(rho)*1.1]);
+end
